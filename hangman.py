@@ -62,6 +62,7 @@ def hangman():
 
     while wrong_guesses < 7:
         guess = input("Enter letter: ")
+        guess = guess.lower()
         if len(guess) != 1:
             print("Only 1 letter input allowed, Please try again")
             continue
