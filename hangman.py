@@ -63,7 +63,7 @@ HANGMANPICS = ['''
       |
 =========''']
 
-def menu():
+def main():
     choice1 = input("Do you want to choose your own set of words or want to play with programs default list of words [ own / default ] : ")
     choice1final = choice1.lower()
     if "own" in choice1final:
@@ -197,4 +197,4 @@ def hangman_own():
         
     print("you have 7 incorrect guesses, you lose! the word was", word_own_to_guess)
 
-menu()
+main()
