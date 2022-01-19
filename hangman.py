@@ -191,7 +191,7 @@ def hangman_own():
             print(HANGMANPICS[wrong_guesses])
             wrong_guesses += 1
             if wrong_guesses >= 5:
-                print(hintslist[word_index])
+                print("Hint:",hintslist[word_index])
             else:
                 continue
         
