@@ -29,6 +29,7 @@ def loadhints():
     hints = open(hintlist, 'r')
     hintslines = hints.read()
     hintslist = hintslines.splitlines()
+    print(len(hintslist),"hints loaded")
     return hintslist
 
 def hangman_default():
