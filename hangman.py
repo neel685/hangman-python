@@ -22,6 +22,15 @@ def loadwords():
     print(len(words_own_to_guess)," words loaded.")
     return words_own_to_guess
 
+def loadhints():
+    global hintslist
+    hintlist = input("Enter name of file(with extension .txt in the end) which contains the hints: ")
+    print("Loading words from",hintlist)
+    hints = open(hintlist, 'r')
+    hintslines = hints.read()
+    hintslist = hintslines.splitlines()
+    return hintslist
+
 def hangman_default():
 
     global word_to_guess
@@ -134,10 +143,11 @@ def hints_default(sport):
 
 def hangman_own():
     loadwords()
-    print(words_own_to_guess)
+    loadhints()
     word_own_to_guess = random.choice(words_own_to_guess)
+    word_index = int(words_own_to_guess.index(word_own_to_guess))
 
-    print("You must guess the word, you lose if you get 7 incorrect guesses.\nThe words can only be from the list aforementioned.")
+    print("You must guess the word, you lose if you get 7 incorrect guesses.")
 
     wrong_guesses = 0
     displaylist_own = []
@@ -219,8 +229,12 @@ def hangman_own():
         else:
             print(HANGMANPICS[wrong_guesses])
             wrong_guesses += 1
+            if wrong_guesses >= 5:
+                print(hintslist[word_index])
+            else:
+                continue
         
-    print("you have 7 incorrect guesses, you lose! the word was", word_to_guess)
+    print("you have 7 incorrect guesses, you lose! the word was", word_own_to_guess)
 
     
     
