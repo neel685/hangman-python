@@ -1,49 +1,18 @@
 import random
 import time
 
-def menu():
-    choice1 = input("Do you want to choose your own set of words or want to play with programs default list of words [ own / default ] : ")
-    choice1final = choice1.lower()
-    if "own" in choice1final:
-        hangman_own()
-    elif "default" in choice1final:
-        hangman_default()
-    else:
-        raise Exception("No such option. Please enter a valid choice by rerunning the program")
-        return
+print(''' _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/  ''')
 
-def loadwords():
-    global words_own_to_guess
-    wordlist = input("Enter name of file(with extension .txt in the end) which contains the words: ")
-    print("Loading words from ",wordlist)
-    words = open(wordlist, 'r')
-    wordsline = words.readline()
-    words_own_to_guess = wordsline.split()
-    print(len(words_own_to_guess)," words loaded.")
-    return words_own_to_guess
-
-def loadhints():
-    global hintslist
-    hintlist = input("Enter name of file(with extension .txt in the end) which contains the hints: ")
-    print("Loading words from",hintlist)
-    hints = open(hintlist, 'r')
-    hintslines = hints.read()
-    hintslist = hintslines.splitlines()
-    print(len(hintslist),"hints loaded")
-    return hintslist
-
-def hangman_default():
-
-    global word_to_guess
-    words_to_guess = ["football","basketball","cricket","tennis","badminton"]
-    word_to_guess = random.choice(words_to_guess)
-
-    print("You must guess the word, you lose if you get 7 incorrect guesses.\nHint: Each of these words are sports.")
+print("Welcome to Hangman!\nBy Neel, Rohan & Tanya from 11F")
     
-    wrong_guesses = 0
-    displaylist = []
-    
-    HANGMANPICS = ['''
+HANGMANPICS = ['''
   +---+
   |   |
       |
@@ -93,6 +62,48 @@ def hangman_default():
  / \  |
       |
 =========''']
+
+def menu():
+    choice1 = input("Do you want to choose your own set of words or want to play with programs default list of words [ own / default ] : ")
+    choice1final = choice1.lower()
+    if "own" in choice1final:
+        hangman_own()
+    elif "default" in choice1final:
+        hangman_default()
+    else:
+        raise Exception("No such option. Please enter a valid choice by rerunning the program")
+        return
+
+def loadwords():
+    global words_own_to_guess
+    wordlist = input("Enter name of file(with extension .txt in the end) which contains the words: ")
+    print("Loading words from ",wordlist)
+    words = open(wordlist, 'r')
+    wordsline = words.readline()
+    words_own_to_guess = wordsline.split()
+    print(len(words_own_to_guess)," words loaded.")
+    return words_own_to_guess
+
+def loadhints():
+    global hintslist
+    hintlist = input("Enter name of file(with extension .txt in the end) which contains the hints: ")
+    print("Loading words from",hintlist)
+    hints = open(hintlist, 'r')
+    hintslines = hints.read()
+    hintslist = hintslines.splitlines()
+    print(len(hintslist),"hints loaded")
+    return hintslist
+
+def hangman_default():
+
+    global word_to_guess
+    words_to_guess = ["football","basketball","cricket","tennis","badminton"]
+    word_to_guess = random.choice(words_to_guess)
+
+    print("You must guess the word, you lose if you get 7 incorrect guesses.\nHint: Each of these words are sports.")
+    
+    wrong_guesses = 0
+    displaylist = []
 
     for _ in range(len(word_to_guess)):
         displaylist.append("_ ")
@@ -152,58 +163,7 @@ def hangman_own():
 
     wrong_guesses = 0
     displaylist_own = []
-
-    HANGMANPICS = ['''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========''']
-
+    
     for _ in range(len(word_own_to_guess)):
         displaylist_own.append("_ ")
 
@@ -236,18 +196,5 @@ def hangman_own():
                 continue
         
     print("you have 7 incorrect guesses, you lose! the word was", word_own_to_guess)
-
-    
-    
-print(''' _                                             
-| |                                            
-| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
-| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
-| | | | (_| | | | | (_| | | | | | | (_| | | | |
-|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
-                    __/ |                      
-                   |___/  ''')
-
-print("Welcome to Hangman!\nBy Neel, Rohan & Tanya from 11F")
 
 menu()
